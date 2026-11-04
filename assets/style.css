@@ -1,0 +1,42 @@
+/* GREENHOUSE design system — swap tokens to match the Instagram grid */
+:root{--bg:#07110b;--bg2:#0d1f14;--ink:#eaf7ee;--muted:#9bb8a4;--lime:#b6ff3b;--leaf:#2fd27a;--glass:rgba(182,255,59,.08);--line:rgba(182,255,59,.22);--r:18px;
+--display:'Syne',system-ui,sans-serif;--body:'Inter',system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.6;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
+background:radial-gradient(600px circle at var(--mx,50%) var(--my,30%),rgba(47,210,122,.18),transparent 60%),
+radial-gradient(900px 600px at 90% -10%,rgba(182,255,59,.10),transparent)}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);line-height:1.02;letter-spacing:-.02em}
+h1{font-size:clamp(3rem,11vw,9rem);text-transform:uppercase}
+h2{font-size:clamp(2rem,6vw,4rem);text-transform:uppercase}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+section{padding:96px 0}
+.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(7,17,11,.7);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-family:var(--display);font-weight:800;letter-spacing:.12em;text-decoration:none;color:var(--lime)}
+.nav ul{display:flex;gap:22px;list-style:none}
+.nav a{text-decoration:none;font-size:.9rem;color:var(--muted);transition:.2s}
+.nav a:hover,.nav a.active{color:var(--lime)}
+.burger{display:none;background:none;border:0;color:var(--ink);font-size:1.6rem}
+@media(max-width:760px){.burger{display:block}.nav ul{position:absolute;top:64px;left:0;right:0;flex-direction:column;padding:20px 16px;background:var(--bg2);display:none}.nav ul.open{display:flex}}
+.btn{display:inline-block;padding:14px 28px;border-radius:999px;background:var(--lime);color:#07110b;font-weight:700;text-decoration:none;border:0;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 40px rgba(182,255,59,.35)}
+.btn.ghost{background:transparent;color:var(--lime);border:1px solid var(--lime)}
+.card{background:var(--glass);border:1px solid var(--line);border-radius:var(--r);padding:24px;transition:transform .3s,border-color .3s}
+.card:hover{transform:translateY(-4px);border-color:var(--lime)}
+.grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.tag{display:inline-block;font-size:.75rem;padding:4px 10px;border-radius:999px;border:1px solid var(--line);color:var(--lime);margin:0 6px 6px 0}
+.kicker{color:var(--lime);letter-spacing:.3em;text-transform:uppercase;font-size:.8rem}
+.muted{color:var(--muted)}
+.reveal{opacity:0;transform:translateY(30px);transition:1s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.marquee{overflow:hidden;border-block:1px solid var(--line);padding:18px 0;white-space:nowrap}
+.marquee span{display:inline-block;font-family:var(--display);font-size:2rem;text-transform:uppercase;animation:mq 25s linear infinite}
+@keyframes mq{to{transform:translateX(-50%)}}
+input,select,textarea{width:100%;padding:14px;border-radius:12px;border:1px solid var(--line);background:var(--bg2);color:var(--ink);font:inherit}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--lime)}
+label{display:block;font-size:.85rem;color:var(--muted);margin:14px 0 6px}
+footer{border-top:1px solid var(--line);padding:40px 0;color:var(--muted);font-size:.9rem}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
