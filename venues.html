@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Venues — GREEN HOUSE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;700&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.vhead{padding:72px 0 24px}
+.note{border-left:3px solid var(--leaf);padding:12px 16px;background:var(--glass);border-radius:0 12px 12px 0;margin-top:20px;font-size:.92rem}
+.filters{display:grid;gap:12px 18px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));align-items:end}
+.filters label{margin:0 0 6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;padding:6px 12px;border-radius:999px;border:1px solid var(--line);cursor:pointer;color:var(--muted);margin:0}
+.chip input{width:auto;accent-color:var(--lime)}
+input[type=range]{padding:0;accent-color:var(--lime)}
+.vcard h3{font-size:1.5rem;text-transform:uppercase;margin:6px 0}
+.status{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--leaf)}
+.status.Played{color:var(--lime)}
+.meta{font-size:.85rem;margin:6px 0 10px}
+.meter{height:8px;border-radius:999px;background:var(--bg2);border:1px solid var(--line);overflow:hidden;margin:10px 0 4px}
+.meter i{display:block;height:100%;background:linear-gradient(90deg,var(--leaf),var(--lime))}
+.cmp{display:flex;align-items:center;gap:8px;font-size:.85rem;margin:12px 0 0;color:var(--ink);cursor:pointer}
+.cmp input{width:auto;accent-color:var(--lime)}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r)}
+table{width:100%;border-collapse:collapse;min-width:420px;font-size:.88rem}
+th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{color:var(--muted);font-weight:500;width:120px}
+thead th{color:var(--lime);font-family:var(--display);text-transform:uppercase}
+.count{margin:20px 0 12px;font-size:.9rem}
+section.tight{padding:40px 0}
+</style>
+</head>
+<body>
+<main>
+<header class="wrap vhead">
+  <p class="kicker">Scouting · Research</p>
+  <h1>Venues</h1>
+  <p class="muted" style="max-width:640px;margin-top:14px">rooms that feel like a <span class="script">greenhouse</span> — warm light, good sound, walls for art and space for creative people to find each other.</p>
+  <p class="note"><strong>Heads up:</strong> this is a working research list. Capacities, BYO rules, food and wall-hanging info are approximate and unverified — always confirm directly with the venue before booking.</p>
+</header>
+
+<section class="tight"><div class="wrap">
+  <div class="card filters" style="transform:none">
+    <div><label for="city">City</label><select id="city"><option value="">All cities</option><option>Sydney</option><option>Melbourne</option></select></div>
+    <div><label for="status">Status</label><select id="status"><option value="">Any status</option><option>Played</option><option>Shortlist</option><option>Researching</option></select></div>
+    <div><label for="cap">Max capacity: <span id="capv"></span></label><input type="range" id="cap" min="50" max="1000" step="10" value="1000"></div>
+    <div><label for="sort">Sort</label><select id="sort"><option value="fit">Best fit</option><option value="name">Name A–Z</option><option value="capA">Capacity ↑</option><option value="capD">Capacity ↓</option></select></div>
+    <div><label for="crowd">Desired crowd size</label><input type="number" id="crowd" min="10" max="2000" value="150"></div>
+    <div><label>Features</label><div class="chips">
+      <label class="chip"><input type="checkbox" data-f="byo"> BYO</label>
+      <label class="chip"><input type="checkbox" data-f="food"> Food</label>
+      <label class="chip"><input type="checkbox" data-f="artWalls"> Art walls</label>
+    </div></div>
+  </div>
+  <p class="count muted" id="count"></p>
+  <div class="grid" id="list"></div>
+</div></section>
+
+<section class="tight"><div class="wrap">
+  <p class="kicker">Side by side</p>
+  <h2>Compare</h2>
+  <p class="muted" style="margin:10px 0 18px">tick up to 3 venues above.</p>
+  <div class="tablewrap" id="compare"></div>
+</div></section>
+</main>
+
+<script>
+// Research list — verify capacity, BYO and contacts before booking
+const VENUES=[
+ {name:"Studio Killa",suburb:"Marrickville",city:"Sydney",status:"Played",approxCapacity:150,type:"Creative studio",vibe:["intimate","warm","diy"],byo:true,food:"Smash burgers at our night (brought in)",artWalls:true,website:"",notes:"Home of WORK IN PROGRESS, 14.3.2026. BYO and burgers worked well."},
+ {name:"Oxford Art Factory",suburb:"Darlinghurst",city:"Sydney",status:"Shortlist",approxCapacity:500,type:"Live music venue",vibe:["live","art","late"],byo:false,food:"Bar only (verify)",artWalls:"verify",website:"",notes:"Gallery bar room may suit a smaller night. Confirm room sizes."},
+ {name:"Lazybones Lounge",suburb:"Marrickville",city:"Sydney",status:"Shortlist",approxCapacity:200,type:"Live music bar",vibe:["intimate","jazz","warm"],byo:false,food:"Kitchen (verify)",artWalls:"verify",website:"",notes:"Close to Studio Killa crowd. Good for acoustic and vocals."},
+ {name:"The Vanguard",suburb:"Newtown",city:"Sydney",status:"Researching",approxCapacity:250,type:"Dinner & show venue",vibe:["seated","live","warm"],byo:false,food:"Dining",artWalls:"verify",website:"",notes:"Seated format — good for a songwriters night."},
+ {name:"Camelot Lounge",suburb:"Marrickville",city:"Sydney",status:"Shortlist",approxCapacity:200,type:"Live music lounge",vibe:["eclectic","intimate","acoustic"],byo:false,food:"Light food (verify)",artWalls:"verify",website:"",notes:"Eclectic programming, community feel."},
+ {name:"Phoenix Central Park",suburb:"Chippendale",city:"Sydney",status:"Researching",approxCapacity:100,type:"Gallery & performance space",vibe:["art","acoustic","intimate"],byo:false,food:"verify",artWalls:true,website:"",notes:"Programmed space — likely by application. Check process."},
+ {name:"107 Projects",suburb:"Redfern",city:"Sydney",status:"Shortlist",approxCapacity:150,type:"Community arts space",vibe:["art","community","multidisciplinary"],byo:"verify",food:"verify",artWalls:true,website:"",notes:"Strong fit for art + music + fashion crossover."},
+ {name:"The Lansdowne",suburb:"Chippendale",city:"Sydney",status:"Researching",approxCapacity:300,type:"Pub band room",vibe:["live","pub","loud"],byo:false,food:"Pub kitchen",artWalls:false,website:"",notes:"Band room upstairs. Pub setting, less intimate."},
+ {name:"Golden Age Cinema & Bar",suburb:"Surry Hills",city:"Sydney",status:"Researching",approxCapacity:60,type:"Cinema & bar",vibe:["intimate","film","warm"],byo:false,food:"Bar snacks",artWalls:false,website:"",notes:"Tiny and atmospheric. Could suit a film/BTS screening night."},
+ {name:"Marrickville Bowling Club",suburb:"Marrickville",city:"Sydney",status:"Researching",approxCapacity:300,type:"Bowling club",vibe:["community","outdoor","casual"],byo:"verify",food:"verify",artWalls:false,website:"",notes:"Daytime / outdoor option. Verify hire and BYO rules."},
+ {name:"Petersham Bowling Club",suburb:"Petersham",city:"Sydney",status:"Researching",approxCapacity:250,type:"Bowling club",vibe:["community","live","casual"],byo:"verify",food:"verify",artWalls:false,website:"",notes:"Hosts gigs. Check function room availability."},
+ {name:"The Red Rattler Theatre",suburb:"Marrickville",city:"Sydney",status:"Shortlist",approxCapacity:250,type:"Community theatre",vibe:["diy","art","community"],byo:"verify",food:"verify",artWalls:"verify",website:"",notes:"Artist-run feel. Good for multidisciplinary programs."},
+ {name:"The Gasometer",suburb:"Collingwood",city:"Melbourne",status:"Researching",approxCapacity:300,type:"Pub band room",vibe:["live","pub"],byo:false,food:"Pub kitchen",artWalls:false,website:"",notes:"For a possible Melbourne edition. PLACEHOLDER interest only."},
+ {name:"The Night Cat",suburb:"Fitzroy",city:"Melbourne",status:"Researching",approxCapacity:500,type:"Live music venue",vibe:["live","dance","warm"],byo:false,food:"Bar only (verify)",artWalls:false,website:"",notes:"Bigger room. Melbourne scouting only."}
+];
+const $=s=>document.querySelector(s);
+const picked=new Set();
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const yn=v=>v===true?"Yes":v===false?"No":"Verify";
+function fit(v,crowd){
+  const r=crowd/v.approxCapacity;
+  let s=r>1?Math.max(0,100-(r-1)*120):r>=.6?100:Math.max(10,100-(.6-r)*140);
+  if(v.vibe.includes("intimate")||v.vibe.includes("warm"))s+=5;
+  if(v.artWalls===true)s+=5;
+  return Math.round(Math.min(100,s));
+}
+function render(){
+  const city=$("#city").value,st=$("#status").value,cap=+$("#cap").value,crowd=Math.max(1,+$("#crowd").value||1);
+  $("#capv").textContent=cap>=1000?"any":cap;
+  const feats=[...document.querySelectorAll("[data-f]:checked")].map(c=>c.dataset.f);
+  let rows=VENUES.map(v=>({...v,fit:fit(v,crowd)})).filter(v=>(!city||v.city===city)&&(!st||v.status===st)&&(cap>=1000||v.approxCapacity<=cap)&&feats.every(f=>f==="food"?v.food&&v.food!=="verify":v[f]===true));
+  const so=$("#sort").value;
+  rows.sort(so==="name"?(a,b)=>a.name.localeCompare(b.name):so==="capA"?(a,b)=>a.approxCapacity-b.approxCapacity:so==="capD"?(a,b)=>b.approxCapacity-a.approxCapacity:(a,b)=>b.fit-a.fit);
+  $("#count").textContent=rows.length+" of "+VENUES.length+" venues";
+  $("#list").innerHTML=rows.length?rows.map(v=>`<article class="card vcard">
+    <span class="status ${v.status}">${v.status}</span>
+    <h3>${esc(v.name)}</h3>
+    <p class="meta muted">${esc(v.suburb)}, ${v.city} · ~${v.approxCapacity} · ${esc(v.type)}</p>
+    <div>${v.vibe.map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</div>
+    <p class="meta">BYO: ${yn(v.byo)} · Art walls: ${yn(v.artWalls)}<br>Food: ${esc(v.food)}</p>
+    <p class="muted" style="font-size:.88rem">${esc(v.notes)}</p>
+    <div class="meter" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${v.fit}" aria-label="Fit score"><i style="width:${v.fit}%"></i></div>
+    <span style="font-size:.8rem" class="muted">fit for ${crowd} people: <strong style="color:var(--ink)">${v.fit}</strong>/100</span>
+    ${v.website?`<p><a href="${esc(v.website)}" target="_blank" rel="noopener">Website ↗</a></p>`:""}
+    <label class="cmp"><input type="checkbox" data-c="${esc(v.name)}" ${picked.has(v.name)?"checked":""} ${!picked.has(v.name)&&picked.size>=3?"disabled":""}> Compare</label>
+  </article>`).join(""):`<p class="muted">no venues match — loosen a filter.</p>`;
+  renderCompare(crowd);
+}
+function renderCompare(crowd){
+  const vs=VENUES.filter(v=>picked.has(v.name));
+  if(!vs.length){$("#compare").innerHTML=`<p class="muted" style="padding:20px">nothing selected yet.</p>`;return}
+  const f=[["Suburb",v=>v.suburb+", "+v.city],["Status",v=>v.status],["Capacity",v=>"~"+v.approxCapacity],["Type",v=>v.type],["Vibe",v=>v.vibe.join(", ")],["BYO",v=>yn(v.byo)],["Food",v=>v.food],["Art walls",v=>yn(v.artWalls)],["Fit ("+crowd+")",v=>fit(v,crowd)+"/100"],["Notes",v=>v.notes]];
+  $("#compare").innerHTML=`<table><thead><tr><th></th>${vs.map(v=>`<th>${esc(v.name)}</th>`).join("")}</tr></thead><tbody>${f.map(([k,g])=>`<tr><th>${k}</th>${vs.map(v=>`<td>${esc(g(v))}</td>`).join("")}</tr>`).join("")}</tbody></table>`;
+}
+document.addEventListener("input",e=>{if(e.target.closest(".filters"))render()});
+$("#list").addEventListener("change",e=>{const n=e.target.dataset.c;if(!n)return;e.target.checked?picked.size<3&&picked.add(n):picked.delete(n);render()});
+render();
+</script>
+<script src="assets/site.js" defer></script>
+</body>
+</html>
