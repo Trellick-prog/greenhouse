@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>About — GREEN HOUSE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;600;700&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.def{font-size:clamp(1.1rem,3vw,1.5rem);max-width:820px;line-height:1.5}
+.def .script{font-size:1.4em}
+.flip{perspective:1000px;min-height:220px;background:none;border:0;padding:0;color:inherit;font:inherit;text-align:left;cursor:pointer;width:100%}
+.flip .in{position:relative;width:100%;height:100%;min-height:220px;transition:transform .6s;transform-style:preserve-3d}
+.flip.on .in{transform:rotateY(180deg)}
+.flip .card{position:absolute;inset:0;backface-visibility:hidden;display:flex;flex-direction:column;justify-content:flex-end}
+.flip .back{transform:rotateY(180deg);background:rgba(255,90,31,.14)}
+.flip .num{font-family:var(--display);font-size:3rem;color:var(--lime);line-height:1}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0}
+.chip{padding:10px 18px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--ink);font:inherit;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--lime);color:#120806;border-color:var(--lime)}
+.stage{display:grid;gap:24px;grid-template-columns:1fr;align-items:center}
+@media(min-width:760px){.stage{grid-template-columns:1.2fr 1fr}}
+.stage svg{width:100%;max-width:440px;height:auto;display:block;margin:auto}
+#stem{transition:stroke-dashoffset 1.6s ease}
+.leafp,.bloom{transform-box:fill-box;transition:transform .8s ease,opacity .8s}
+#glow{transition:opacity 1s}
+.crew .ph{aspect-ratio:1;border-radius:12px;background:var(--bg2);display:grid;place-items:center;margin-bottom:14px;font-family:var(--display);font-size:2rem;color:var(--lime)}
+</style>
+</head>
+<body>
+<main>
+<section class="wrap">
+  <p class="kicker">about</p>
+  <h1>Built by artists, <span class="script">for artists.</span></h1>
+  <p class="def muted" style="margin-top:32px"><strong style="color:var(--ink)" class="script">greenhouse</strong> /ˈɡriːnhaʊs/ <em>noun</em> — a climate-controlled structure designed to cultivate plants by providing warmth, light, and protection from the external environment, creating the conditions necessary for growth.</p>
+</section>
+
+<section class="wrap reveal" style="padding-top:0">
+  <h2>Creative people need <span class="script">creative people.</span></h2>
+  <p style="max-width:640px;margin-top:20px" class="muted">that's the whole idea. GREEN HOUSE is a creative collective in Sydney — live singers, songwriters, DJs, fashion designers and visual artists in one room. we make the warmth, the light and the safe space; you do the growing. honestly, nothing beats a room full of creatives coming together.</p>
+</section>
+
+<section class="wrap">
+  <p class="kicker">if you're an artist, read these</p>
+  <h2 style="margin-bottom:28px">6 creative principles</h2>
+  <!-- PLACEHOLDER: replace with the 6 principles from Instagram -->
+  <div class="grid" id="principles"></div>
+</section>
+
+<section class="wrap">
+  <p class="kicker">growth</p>
+  <h2>What do you <span class="script">grow?</span></h2>
+  <div class="chips" role="group" aria-label="Pick a discipline">
+    <button class="chip" data-d="singer">Singer</button><button class="chip" data-d="songwriter">Songwriter</button><button class="chip" data-d="dj">DJ</button><button class="chip" data-d="fashion">Fashion</button><button class="chip" data-d="visual">Visual art</button>
+  </div>
+  <div class="stage">
+    <svg viewBox="0 0 300 340" role="img" aria-labelledby="pt">
+      <title id="pt">A plant growing under warm light</title>
+      <defs>
+        <radialGradient id="lg" cx="50%" cy="0%" r="80%"><stop offset="0" stop-color="#e8a33d" stop-opacity=".75"/><stop offset="1" stop-color="#ff5a1f" stop-opacity="0"/></radialGradient>
+      </defs>
+      <rect id="glow" width="300" height="340" fill="url(#lg)" opacity=".15"/>
+      <line x1="150" y1="0" x2="150" y2="22" stroke="var(--muted)" stroke-width="2"/>
+      <path d="M128 22h44l-8 14h-28z" fill="var(--leaf)"/>
+      <path id="stem" d="M150 300 C140 250 162 210 150 160 C142 125 156 100 150 80" fill="none" stroke="var(--leaf)" stroke-width="5" stroke-linecap="round" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100"/>
+      <g fill="var(--lime)">
+        <path class="leafp" d="M148 250 q-40 -10 -50 -40 q35 0 50 40z" style="transform:scale(0);transform-origin:right bottom"/>
+        <path class="leafp" d="M152 205 q40 -10 50 -40 q-35 0 -50 40z" style="transform:scale(0);transform-origin:left bottom"/>
+        <path class="leafp" d="M148 150 q-34 -8 -42 -34 q30 0 42 34z" style="transform:scale(0);transform-origin:right bottom"/>
+      </g>
+      <g class="bloom" style="transform:scale(0);transform-origin:center" id="bloom">
+        <circle cx="150" cy="72" r="18" fill="var(--lime)"/><circle cx="150" cy="72" r="8" fill="var(--leaf)"/>
+      </g>
+      <path d="M100 300h100l-12 36h-76z" fill="var(--bg2)" stroke="var(--line)"/>
+    </svg>
+    <div>
+      <h3 id="gt" style="font-size:2rem;text-transform:uppercase">pick one</h3>
+      <p id="gd" class="muted" style="margin-top:12px">choose a discipline and watch what a little warmth and light can do.</p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <p class="kicker">the crew</p>
+  <h2 style="margin-bottom:28px">Who's behind it</h2>
+  <!-- PLACEHOLDER: crew names, roles, photos and bios to be confirmed -->
+  <div class="grid crew">
+    <div class="card"><div class="ph">GH</div><h3>PLACEHOLDER</h3><p class="muted">Role — PLACEHOLDER</p></div>
+    <div class="card"><div class="ph">GH</div><h3>PLACEHOLDER</h3><p class="muted">Role — PLACEHOLDER</p></div>
+    <div class="card"><div class="ph">GH</div><h3>PLACEHOLDER</h3><p class="muted">Role — PLACEHOLDER</p></div>
+  </div>
+</section>
+
+<section class="wrap reveal" style="text-align:center">
+  <h2>Need <span class="script">creative people?</span></h2>
+  <p class="muted" style="margin:16px auto 28px;max-width:520px">perform, show your work, host us or just come along. we'd love to hear from you.</p>
+  <a class="btn" href="enquire.html">Enquire →</a>
+</section>
+</main>
+<script>
+(()=>{
+const P=document.getElementById('principles');
+for(let i=1;i<=6;i++){P.insertAdjacentHTML('beforeend',`<button class="flip" aria-pressed="false"><div class="in"><div class="card"><span class="num">0${i}</span><h3 style="margin-top:10px">Principle ${i}</h3><p class="muted">tap to flip</p></div><div class="card back"><p>PLACEHOLDER: principle ${i} text from Instagram.</p></div></div></button>`)}
+P.addEventListener('click',e=>{const b=e.target.closest('.flip');if(b){b.classList.toggle('on');b.setAttribute('aria-pressed',b.classList.contains('on'))}});
+const D={singer:['singer','find your voice in a room that’s actually listening.'],songwriter:['songwriter','rough drafts welcome — this is a work in progress.'],dj:['dj','read the room, share the room.'],fashion:['fashion','bring the pieces, we’ll bring the light.'],visual:['visual art','your work on the walls, among people who get it.']};
+const stem=document.getElementById('stem'),leaves=[...document.querySelectorAll('.leafp')],bloom=document.getElementById('bloom'),glow=document.getElementById('glow');
+document.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{
+  document.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed',x===c));
+  stem.style.transition='none';stem.style.strokeDashoffset=100;leaves.concat(bloom).forEach(l=>{l.style.transition='none';l.style.transform='scale(0)'});glow.style.opacity=.15;
+  stem.getBoundingClientRect();
+  stem.style.transition='';stem.style.strokeDashoffset=0;glow.style.opacity=1;
+  leaves.forEach((l,i)=>{l.style.transition='';setTimeout(()=>l.style.transform='scale(1)',500+i*350)});
+  bloom.style.transition='';setTimeout(()=>bloom.style.transform='scale(1)',1700);
+  document.getElementById('gt').textContent=D[c.dataset.d][0];document.getElementById('gd').textContent=D[c.dataset.d][1];
+});
+})();
+</script>
+<script src="assets/site.js" defer></script>
+</body>
+</html>
