@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GREEN HOUSE — a creative collective</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.hero{min-height:100vh;min-height:100svh;display:flex;align-items:center;text-align:center;padding:64px 0}
+.hero h1{font-weight:800;font-size:clamp(3rem,15vw,12rem);line-height:.85;margin:18px 0 22px;user-select:none}
+.hero h1 .w{display:inline-block;white-space:nowrap}
+.hero h1 span.l{display:inline-block;transition:transform .25s ease-out,color .25s;will-change:transform}
+.hero .tagline{font-size:clamp(1.1rem,3.5vw,1.6rem);margin-bottom:30px}
+.ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.def{font-size:clamp(1.15rem,3.6vw,1.9rem);line-height:1.45;max-width:860px;min-height:7em}
+.def b{font-family:var(--display);font-size:1.3em;color:var(--lime)}
+.caret{display:inline-block;width:.08em;height:1em;background:var(--lime);vertical-align:-.1em;animation:bl 1s steps(1) infinite}
+@keyframes bl{50%{opacity:0}}
+.event{display:grid;gap:24px;grid-template-columns:1.3fr 1fr;align-items:end;padding:36px;background:linear-gradient(135deg,rgba(180,30,20,.35),rgba(255,90,31,.12) 60%,rgba(18,8,6,.6))}
+.event .date{font-size:clamp(2.6rem,9vw,5rem);color:var(--leaf);line-height:1}
+@media(max-width:700px){.event{grid-template-columns:1fr;padding:24px}}
+.stats{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));text-align:center}
+.stat{padding:36px 20px;background:radial-gradient(circle at 50% 0,rgba(255,90,31,.28),transparent 70%),var(--glass)}
+.stat .n{font-family:var(--display);font-weight:800;font-size:clamp(3rem,10vw,5rem);line-height:1;color:var(--lime);text-shadow:0 0 40px rgba(255,90,31,.55)}
+.teaser{text-decoration:none;display:block}
+.teaser h3{font-size:1.8rem;text-transform:uppercase;margin:10px 0}
+.ig{display:grid;gap:10px;grid-template-columns:repeat(6,1fr)}
+.ig a{aspect-ratio:1;border-radius:12px;display:flex;align-items:flex-end;padding:10px;font-size:.75rem;text-decoration:none;transition:transform .3s,filter .3s}
+.ig a:hover{transform:scale(1.04);filter:brightness(1.2)}
+@media(max-width:700px){.ig{grid-template-columns:repeat(3,1fr)}}
+.final{text-align:center}
+.final h2{margin:14px 0 28px}
+</style>
+</head>
+<body>
+<main>
+<section class="hero">
+  <div class="wrap" style="width:100%">
+    <p class="kicker">a creative collective · Sydney</p>
+    <h1 id="title" aria-label="GREEN HOUSE"><span class="w">GREEN</span> <span class="w">HOUSE</span></h1>
+    <p class="tagline">Creative people need creative people.</p>
+    <div class="ctas"><a class="btn" href="enquire.html">Enquire</a><a class="btn ghost" href="gigs.html">Past gigs</a></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="kicker">the metaphor</p>
+    <p class="def" id="def" data-text="greenhouse /ˈɡriːnhaʊs/ noun — a climate-controlled structure designed to cultivate plants by providing warmth, light, and protection from the external environment, creating the conditions necessary for growth."><span id="deft"></span><span class="caret"></span></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap reveal">
+    <p class="kicker" style="margin-bottom:14px">latest event</p>
+    <a class="card event" href="gigs.html" style="text-decoration:none">
+      <div>
+        <p class="muted">GREEN HOUSE presents</p>
+        <h2>Work in Progress</h2>
+        <p class="muted" style="margin-top:12px">Studio Killa, Marrickville NSW · 6:00pm · BYO drinks · smash burgers 6–7:30</p>
+        <p style="margin-top:14px"><span class="tag">14 artists</span><span class="tag">live</span><span class="tag">fashion</span><span class="tag">DJs</span></p>
+      </div>
+      <div style="text-align:right">
+        <div class="script date">14.3.2026</div>
+        <p class="kicker" style="margin-top:10px">see the gig →</p>
+      </div>
+    </a>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true"><span>Live singers · Songwriters · DJs · Fashion designers · Visual artists · Live singers · Songwriters · DJs · Fashion designers · Visual artists · </span><span>Live singers · Songwriters · DJs · Fashion designers · Visual artists · Live singers · Songwriters · DJs · Fashion designers · Visual artists · </span></div>
+
+<section>
+  <div class="wrap stats">
+    <div class="card stat reveal"><div class="n" data-to="1225">0</div><p class="muted">community on Instagram</p></div>
+    <div class="card stat reveal"><div class="n" data-to="14">0</div><p class="muted">artists at Work in Progress</p></div>
+    <div class="card stat reveal"><div class="n" data-to="1">0</div><p class="muted">room full of creatives</p></div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <h2 class="reveal" style="margin-bottom:28px">Come <span class="script" style="color:var(--leaf)">inside</span></h2>
+    <div class="grid">
+      <a class="card teaser reveal" href="gigs.html"><span class="kicker">01</span><h3>Gigs</h3><p class="muted">Work in Progress and what's next. Event 2: TBC.</p></a>
+      <a class="card teaser reveal" href="venues.html"><span class="kicker">02</span><h3>Venues</h3><p class="muted">The rooms where it happens, starting with Studio Killa.</p></a>
+      <a class="card teaser reveal" href="about.html"><span class="kicker">03</span><h3>About</h3><p class="muted">The heart of our culture: built by artists, for artists.</p></a>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <p class="kicker" style="margin-bottom:14px">@greenhouseau</p>
+    <div class="ig" id="ig"></div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap reveal">
+    <p class="kicker">need creative people</p>
+    <h2>Built by artists, for artists.</h2>
+    <a class="btn" href="enquire.html">Get involved</a>
+  </div>
+</section>
+</main>
+
+<script>
+(()=>{
+const rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+// hero letters
+const h=document.getElementById('title'),ls=[];
+h.querySelectorAll('.w').forEach(w=>{w.innerHTML=[...w.textContent].map(c=>`<span class="l" aria-hidden="true">${c}</span>`).join('');});
+h.querySelectorAll('.l').forEach(l=>ls.push(l));
+if(!rm)addEventListener('pointermove',e=>{ls.forEach(l=>{const r=l.getBoundingClientRect(),dx=e.clientX-(r.left+r.width/2),dy=e.clientY-(r.top+r.height/2),d=Math.hypot(dx,dy),f=Math.max(0,1-d/260);
+l.style.transform=`translate(${-dx*f*.15}px,${-dy*f*.15}px) scale(${1+f*.18}) rotate(${dx*f*.03}deg)`;l.style.color=f>.35?'var(--lime)':''});});
+// typing definition
+const def=document.getElementById('def'),t=document.getElementById('deft'),txt=def.dataset.text,head='greenhouse';
+const paint=n=>{const s=txt.slice(0,n);t.innerHTML=n<=head.length?`<b>${s}</b>`:`<b>${head}</b>`+s.slice(head.length)};
+new IntersectionObserver((es,o)=>{if(!es[0].isIntersecting)return;o.disconnect();if(rm)return paint(txt.length);let i=0;const id=setInterval(()=>{paint(++i);if(i>=txt.length)clearInterval(id)},28)},{threshold:.4}).observe(def);
+// counters
+const co=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;co.unobserve(e.target);const el=e.target,to=+el.dataset.to,t0=performance.now(),D=rm?0:1600;
+const step=n=>{const p=D?Math.min(1,(n-t0)/D):1;el.textContent=Math.round(to*(1-Math.pow(1-p,3))).toLocaleString('en-AU');if(p<1)requestAnimationFrame(step)};requestAnimationFrame(step)}),{threshold:.5});
+document.querySelectorAll('.n[data-to]').forEach(el=>co.observe(el));
+// instagram strip
+const g=[['#ff5a1f','#7a1408'],['#e8a33d','#5a1a0c'],['#b3261e','#120806'],['#ff8a3d','#9b2a12'],['#5a0f0a','#e8a33d'],['#ff5a1f','#2a0c06']],lab=['LIVES','ARTISTS','EVENT 2','BTS','WIP','@greenhouseau'];
+document.getElementById('ig').innerHTML=g.map((c,i)=>`<a href="https://www.instagram.com/greenhouseau" target="_blank" rel="noopener" style="background:linear-gradient(${40+i*50}deg,${c[0]},${c[1]})" aria-label="GREEN HOUSE on Instagram">${lab[i]}</a>`).join('');
+})();
+</script>
+<script src="assets/site.js" defer></script>
+</body>
+</html>

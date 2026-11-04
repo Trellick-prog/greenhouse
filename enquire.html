@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Enquire — GREEN HOUSE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;600;700&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.prog{height:6px;background:var(--bg2);border-radius:999px;overflow:hidden;margin:24px 0 8px}
+.prog i{display:block;height:100%;width:33%;background:var(--lime);transition:width .4s}
+.step{display:none}.step.on{display:block}
+.types{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
+.types label{margin:0;cursor:pointer;color:var(--ink);font-size:1rem}
+.types input{position:absolute;opacity:0;width:1px}
+.types .card{height:100%}
+.types input:checked+.card{border-color:var(--lime);background:rgba(255,90,31,.16)}
+.types input:focus-visible+.card{outline:2px solid var(--lime)}
+.types h3{font-size:1.15rem;margin-bottom:6px;text-transform:uppercase}
+.err{color:var(--lime);font-size:.85rem;min-height:1.2em;margin-top:8px}
+.row{display:flex;gap:12px;justify-content:space-between;margin-top:28px;flex-wrap:wrap}
+.cond{display:none}.cond.on{display:block}
+.review dl{display:grid;grid-template-columns:minmax(90px,30%) 1fr;gap:6px 14px;margin-top:12px}
+.review dt{color:var(--muted)}.review dd{word-break:break-word}
+details{border-bottom:1px solid var(--line);padding:16px 0}
+summary{cursor:pointer;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::after{content:"+";color:var(--lime)}details[open] summary::after{content:"–"}
+details p{margin-top:10px}
+input[type=range]{padding:0;accent-color:var(--lime)}
+</style>
+</head>
+<body>
+<main>
+<section class="wrap">
+  <p class="kicker">enquire</p>
+  <h1>Let's grow <span class="script">together</span></h1>
+  <p class="muted" style="max-width:560px;margin-top:16px">Creative people need creative people. Tell us who you are and what you want to make — three quick steps.</p>
+
+  <!-- NOTE: the first submission to this FormSubmit address triggers a FormSubmit activation email to hsquaredpartners@gmail.com. Click the link in it once, or submissions won't be delivered. -->
+  <form id="f" action="https://formsubmit.co/hsquaredpartners@gmail.com" method="POST" novalidate>
+    <input type="hidden" name="_subject" id="subj" value="New GREEN HOUSE enquiry">
+    <input type="hidden" name="_captcha" value="false">
+
+    <div class="prog" aria-hidden="true"><i id="bar"></i></div>
+    <p class="muted" id="stepLabel" aria-live="polite">Step 1 of 3</p>
+
+    <fieldset class="step on" data-step="1" style="border:0">
+      <legend><h2 style="font-size:clamp(1.6rem,5vw,2.6rem);margin:20px 0">What's it about?</h2></legend>
+      <div class="grid types">
+        <label><input type="radio" name="type" value="Perform at Green House" data-g="artist"><div class="card"><h3>Perform</h3><p class="muted">Sing, write, DJ — perform at Green House.</p></div></label>
+        <label><input type="radio" name="type" value="Show your work" data-g="artist"><div class="card"><h3>Show your work</h3><p class="muted">Fashion or visual art in the room.</p></div></label>
+        <label><input type="radio" name="type" value="Host us at your venue" data-g="venue"><div class="card"><h3>Host us</h3><p class="muted">Got a space? Let's fill it with creatives.</p></div></label>
+        <label><input type="radio" name="type" value="Partner / sponsor" data-g="other"><div class="card"><h3>Partner / sponsor</h3><p class="muted">Back artists building something.</p></div></label>
+        <label><input type="radio" name="type" value="Press" data-g="other"><div class="card"><h3>Press</h3><p class="muted">Stories, interviews, features.</p></div></label>
+        <label><input type="radio" name="type" value="Come to the next event" data-g="other"><div class="card"><h3>Next event</h3><p class="muted">Get the word on EVENT 2 (TBC).</p></div></label>
+      </div>
+      <p class="err" data-err="1"></p>
+    </fieldset>
+
+    <fieldset class="step" data-step="2" style="border:0">
+      <legend><h2 style="font-size:clamp(1.6rem,5vw,2.6rem);margin:20px 0">A little more</h2></legend>
+      <div class="cond" data-g="artist">
+        <label for="disc">Discipline</label>
+        <select id="disc" name="discipline"><option value="">Choose one</option><option>Singer</option><option>Songwriter</option><option>DJ</option><option>Fashion designer</option><option>Visual artist</option><option>Other</option></select>
+        <label for="ig">Instagram link</label><input id="ig" name="instagram" type="url" placeholder="https://instagram.com/…">
+        <label for="sp">Spotify link (optional)</label><input id="sp" name="spotify" type="url" placeholder="https://open.spotify.com/…">
+      </div>
+      <div class="cond" data-g="venue">
+        <label for="vn">Venue name</label><input id="vn" name="venue_name">
+        <label for="sub">Suburb</label><input id="sub" name="suburb" placeholder="e.g. Marrickville">
+        <label for="cap">Capacity: <strong id="capOut">150</strong></label><input id="cap" name="capacity" type="range" min="20" max="1000" step="10" value="150">
+        <label for="dates">Available dates</label><input id="dates" name="dates" placeholder="e.g. Saturdays in May">
+      </div>
+      <div class="cond" data-g="other">
+        <label for="brief">Brief</label><textarea id="brief" name="brief" rows="4" placeholder="Tell us the idea in a few lines"></textarea>
+      </div>
+      <p class="err" data-err="2"></p>
+    </fieldset>
+
+    <fieldset class="step" data-step="3" style="border:0">
+      <legend><h2 style="font-size:clamp(1.6rem,5vw,2.6rem);margin:20px 0">About you</h2></legend>
+      <label for="nm">Name</label><input id="nm" name="name" autocomplete="name">
+      <label for="em">Email</label><input id="em" name="email" type="email" autocomplete="email">
+      <label for="ph">Phone (optional)</label><input id="ph" name="phone" type="tel" autocomplete="tel">
+      <label for="msg">Message</label><textarea id="msg" name="message" rows="4"></textarea>
+      <p class="err" data-err="3"></p>
+      <div class="card review" style="margin-top:24px"><p class="kicker">review</p><dl id="rev"></dl></div>
+    </fieldset>
+
+    <div class="row">
+      <button type="button" class="btn ghost" id="back" hidden>← Back</button>
+      <button type="button" class="btn" id="next" style="margin-left:auto">Next →</button>
+      <button type="submit" class="btn" id="send" hidden style="margin-left:auto">Send enquiry</button>
+    </div>
+    <p class="muted" style="margin-top:18px;font-size:.9rem">Form not working? <a id="mailto" href="mailto:hsquaredpartners@gmail.com?subject=GREEN%20HOUSE%20enquiry">Email us directly</a>.</p>
+  </form>
+</section>
+
+<section class="wrap" style="padding-top:0">
+  <p class="kicker">faq</p><h2 style="margin-bottom:16px">Quick ones</h2>
+  <details><summary>Do I need a big following to perform?</summary><p class="muted">No. Built by artists, for artists — we care about the work, not the numbers.</p></details>
+  <details><summary>What disciplines do you book?</summary><p class="muted">Live singers, songwriters, DJs, fashion designers and visual artists.</p></details>
+  <details><summary>When's the next event?</summary><p class="muted">EVENT 2 is TBC. Pick "Come to the next event" above or follow <a href="https://www.instagram.com/greenhouseau" target="_blank" rel="noopener">@greenhouseau</a>.</p></details>
+  <details><summary>How fast will you reply?</summary><p class="muted">PLACEHOLDER: response time to be confirmed.</p></details>
+</section>
+</main>
+<script>
+(()=>{
+const f=document.getElementById('f'),steps=[...f.querySelectorAll('.step')],bar=document.getElementById('bar'),
+back=document.getElementById('back'),next=document.getElementById('next'),send=document.getElementById('send');
+let cur=1;
+const val=n=>(f.elements[n]&&f.elements[n].value||'').trim();
+const group=()=>{const r=f.querySelector('input[name=type]:checked');return r?r.dataset.g:null};
+const urlOk=v=>!v||/^https?:\/\/\S+\.\S+/.test(v);
+const emailOk=v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+function check(s){
+  let e='';
+  if(s===1&&!group())e='Pick one to keep going.';
+  if(s===2){const g=group();
+    if(g==='artist'){if(!val('discipline'))e='Choose your discipline.';else if(!val('instagram'))e='Add your Instagram link.';else if(!urlOk(val('instagram'))||!urlOk(val('spotify')))e='Links should start with https://';}
+    if(g==='venue'){if(!val('venue_name'))e='Add your venue name.';else if(!val('suburb'))e='Add the suburb.';else if(!val('dates'))e='Add some possible dates.';}
+    if(g==='other'&&val('brief').length<10)e='Give us a short brief (a sentence or two).';}
+  if(s===3){if(!val('name'))e='Add your name.';else if(!emailOk(val('email')))e='Add a valid email.';else if(!val('message'))e='Say hi in the message.';}
+  f.querySelector(`[data-err="${s}"]`).textContent=e;return !e;
+}
+function review(){
+  const g=group(),rows=[['Type',val('type')]];
+  const fields=g==='artist'?[['Discipline','discipline'],['Instagram','instagram'],['Spotify','spotify']]:g==='venue'?[['Venue','venue_name'],['Suburb','suburb'],['Capacity','capacity'],['Dates','dates']]:[['Brief','brief']];
+  fields.forEach(([l,n])=>rows.push([l,val(n)]));
+  [['Name','name'],['Email','email'],['Phone','phone'],['Message','message']].forEach(([l,n])=>rows.push([l,val(n)]));
+  const rev=document.getElementById('rev');rev.textContent='';
+  rows.filter(r=>r[1]).forEach(([l,v])=>{const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=l;dd.textContent=v;rev.append(dt,dd)});
+  document.getElementById('subj').value=`GREEN HOUSE enquiry: ${val('type')} — ${val('name')}`;
+  const body=rows.filter(r=>r[1]).map(r=>r.join(': ')).join('\n');
+  document.getElementById('mailto').href=`mailto:hsquaredpartners@gmail.com?subject=${encodeURIComponent('GREEN HOUSE enquiry: '+val('type'))}&body=${encodeURIComponent(body)}`;
+}
+function show(s){
+  cur=s;steps.forEach(st=>st.classList.toggle('on',+st.dataset.step===s));
+  bar.style.width=(s/3*100)+'%';document.getElementById('stepLabel').textContent=`Step ${s} of 3`;
+  back.hidden=s===1;next.hidden=s===3;send.hidden=s!==3;
+  if(s===2){const g=group();f.querySelectorAll('.cond').forEach(c=>{const on=c.dataset.g===g;c.classList.toggle('on',on);c.querySelectorAll('input,select,textarea').forEach(i=>i.disabled=!on)})}
+  if(s===3)review();
+  f.scrollIntoView({behavior:'smooth',block:'start'});
+}
+next.onclick=()=>{if(check(cur))show(cur+1)};
+back.onclick=()=>show(cur-1);
+f.addEventListener('input',()=>{if(cur===3)review()});
+f.querySelectorAll('input[name=type]').forEach(r=>r.addEventListener('change',()=>f.querySelector('[data-err="1"]').textContent=''));
+const cap=document.getElementById('cap');cap.oninput=()=>document.getElementById('capOut').textContent=cap.value;
+f.addEventListener('submit',e=>{if(!check(1)||!check(2)||!check(3)){e.preventDefault();}else{review();send.disabled=true;send.textContent='Sending…'}});
+f.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.tagName==='INPUT'&&cur<3){e.preventDefault();next.click()}});
+f.querySelectorAll('.cond input,.cond select,.cond textarea').forEach(i=>i.disabled=true);
+})();
+</script>
+<script src="assets/site.js" defer></script>
+</body>
+</html>
